@@ -1,13 +1,63 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background-image: linear-gradient(
+    to bottom right,
+    #121213,
+    rgba(13, 20, 26, 0.561)
+  ); */
+  background-color: #22223f;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.wrapper {
+  height: auto;
+}
+.admin-container {
+  height: auto;
+  margin-top: 10%;
+  background-color: white;
+}
+.admin-img {
+  height: 100%;
+  padding: 0px;
+  text-align: center;
+  margin-top: 15%;
+  background-color: white;
+}
+.admin-img img {
+  height: 200px;
+}
+.admin-action-container {
+  height: 100%;
+  padding: 0;
+}
+.admin-button-container {
+  margin: 5% 0;
+}
+.admin-button-container button {
+  width: 100%;
+  font-size: 100%;
+  font-weight: bold;
+  padding: 3%;
+}
+.admin-content {
+  margin: 10% 0;
+}
+.admin-content h1 {
+  margin: 5% 0;
+}
+.admin-button-container i {
+  vertical-align: middle;
+  padding-right: 5%;
+  font-weight: bolder;
 }

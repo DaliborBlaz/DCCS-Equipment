@@ -1,0 +1,30 @@
+#wraper {
+  height: auto;
+  margin-top: 10%;
+  padding: 0;
+}
+.div-img {
+  height: 100px;
+  background-color: white;
+}
+.div-img img {
+  width: 50px;
+}
+
+.div-form {
+  height: 570px;
+}
+.form {
+  margin-top: 10%;
+  padding: 5% 0;
+  border: 5px inset rgb(246, 135, 44);
+  border-radius: 5%;
+  background-color: white;
+}
+.div-input {
+  margin-bottom: 10px;
+}
+.error {
+  font-size: 10px;
+  color: red;
+}

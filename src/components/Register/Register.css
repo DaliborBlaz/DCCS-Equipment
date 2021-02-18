@@ -1,0 +1,38 @@
+#wraper {
+  height: auto;
+  margin-top: 10%;
+  padding: 0;
+}
+.div-img {
+  height: 600px;
+  padding: 0;
+  margin: 0;
+  background-image: linear-gradient(to bottom right, #fa6007, #fbb96e);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.div-img img {
+  margin-top: 50%;
+  width: 100%;
+}
+.form {
+  border: 5px inset rgb(246, 135, 44);
+  border-radius: 5%;
+  margin: 5% 0;
+  padding: 5% 0;
+}
+
+.div-form {
+  background-color: white;
+  height: 600px;
+}
+.div-input {
+  margin-bottom: 10px;
+}
+h1 {
+  margin: 0px;
+}
+.error {
+  font-size: 10px;
+  color: red;
+}

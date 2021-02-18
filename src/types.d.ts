@@ -1,5 +1,5 @@
 type Employee={
-  _id:number,
+  _id:string,
   _name:string,
   _email:string,
   _password:string,
@@ -38,3 +38,7 @@ const EquipmentTypes=[
  "Asus", 
  "Kingston"
 ];
+
+type AddNewEmployee=(employee:Employee)=>void;
+
+type SetEmailList=() => string[]
