@@ -33,7 +33,7 @@ export const Admin:React.FC<any>=(props)=>{
              <button className="customButton"   onClick={()=>{ history.push('/filter-type')}}><Filter/>Items by Type</button>
              </div>
              <div className="ms-Grid-col ms-lg8 ms-lgPush2 admin-button-container">
-              <button className="customButton"><Filter/>Items by Employee</button>
+              <button className="customButton" onClick={()=>{ history.push('/filter-employee')}}><Filter/>Items by Employee</button>
              </div>
          </div>
         </div>

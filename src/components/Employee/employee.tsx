@@ -1,28 +1,23 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
 import { EmployeeContext } from '../../AppContext/employeeContext';
+import { Items } from '../FilterEquipmentByEmployee/item';
 
 
 export const Employee:React.FC<any>=(props)=>{
 
-const {employees}=useContext(EmployeeContext);
-
-const id= props.match.params.id;
-const [currentEmployee,setCurrentEmoloyee]=useState<Employee>();
-
+const [user, setUser]=useState<Employee>();
 useEffect(() => {
-  const newEmp=employees.find((item:Employee)=>item._id===id)
-  if(newEmp){
-   setCurrentEmoloyee(newEmp);
-  }
- }, [])
+setUser(JSON.parse(localStorage.getItem("user")!));
+ 
+}, [])
 
+ if(user){
  return <div className="ms-Grid container" dir="ltr">
       <div className="ms-Grid-row">
        <div className="ms-Grid-col ms-lg8 ms-lgPush2">
         <div className="ms-Grid-col ms-lg6 ms-lgPush3" >
-         <h1>{currentEmployee?._name}</h1>
-         <h2>{currentEmployee?._email}</h2>
+         <h1>{user._name}</h1>
+         <h2>{user._email}</h2>
         </div>
         
         </div>
@@ -30,10 +25,13 @@ useEffect(() => {
          <div className="ms-Grid-row">
          <div className="ms-Grid-col ms-lg8 ms-lgPush2">
           <div className="ms-Grid-col ms-lg6 ms-lgPush3" >
-           items
+           <Items item={user._equipment}/>
           </div>
          </div>
          </div>
         </div>
+ }else{
+ return null;
+ }
 }
 

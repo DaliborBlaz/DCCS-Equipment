@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
+import { Employee } from '../components/Employee/employee';
 import { EquipmentItem } from '../components/EquipmentList/EquipmentItem';
 
 
@@ -64,6 +65,7 @@ const getEmployeeById:GetEmployeeById=(id:string)=>{
    return " "
  }
 }
+
 const addItemToEmployee:AddItemToEmployee=(employeeId:string, item:EquipmentItem)=>{
   employees.map((employee:Employee)=>{
     if(employee._id===employeeId){
