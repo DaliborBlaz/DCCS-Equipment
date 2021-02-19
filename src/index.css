@@ -61,3 +61,34 @@ code {
   padding-right: 5%;
   font-weight: bolder;
 }
+
+/*addEquipment*/
+
+.addEquipment-wraper {
+  margin: 10% 0;
+}
+.addEquipment-wraper select {
+  height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.addEquipment-wraper input {
+  height: 30px;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: gray;
+}

@@ -58,6 +58,7 @@ const validate= Yup.object({
           _password:values.password,
           _role:"employee",
           _loggedIn:false,
+          _equipment:[]
           }
           addNewEmployee(newUser);
           emails.push(newUser._email);

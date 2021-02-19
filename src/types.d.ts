@@ -5,6 +5,7 @@ type Employee={
   _password:string,
   _role:string,
   _loggedIn:boolean,
+  _equipment:EquipmentItem[]
 }
  
 type EquipmentItem={
@@ -13,32 +14,24 @@ type EquipmentItem={
   _manufacturer:string;
   _serialNumber:string;
   _assigned:boolean;
-}
-type AssignedEquipment={
-  _employee:string;
-  _equipment:Array<EquipmentItem>
+  _assignedTo:string
 }
 
-const EquipmentTypes=[
-  "Laptop",
-  "Docking station",
-  "Monitor",
-  "Keyboard",
-  "Mouse",
-  "Headsets",
-  "RAM",
-  "HDD/SDD",
-  "Other",
- ];
 
- const Manufacturers=[
- "Dell", 
- "Lenovo", 
- "HP", 
- "Asus", 
- "Kingston"
-];
+
 
 type AddNewEmployee=(employee:Employee)=>void;
 
 type SetEmailList=() => string[]
+type AddEquipmentItem=(item:EquipmentItem)=>void;
+
+type GetSumTypes=(type:string)=>number;
+
+type AssignItem=(itemId:string, employeeId:string)=>void;
+
+type AddItemToEmployee=(employeeID:string, item:EquipmentItem)=>void;
+
+type GetEmployeeById=(id:string)=>string;
+
+type RetractItemFromEmployee=(employeeId:string, item:EquipmentItem)=>void;
+type RetractItem=(itemId:string)=>void;
