@@ -3,8 +3,9 @@ import { getTheme } from "@fluentui/react";
 
 export const Theme = loadTheme({
   defaultFontStyle: {
-    fontFamily: "Volkhov, Serif",
+    fontFamily: 'Walter Turncoat',
     fontWeight: "regular",
+    fontSize:"20px"
   },
   palette: {
     themePrimary: "#f69325",

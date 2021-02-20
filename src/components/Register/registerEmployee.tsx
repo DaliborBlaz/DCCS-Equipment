@@ -1,19 +1,16 @@
 import {PrimaryButton} from '@fluentui/react';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {GetTheme} from '../../config/theme';
 import CustomTextField from "./CustomTextField";
 import {Formik,Form,} from 'formik';
 import { EmployeeContext } from './../../AppContext/employeeContext';
 import { useContext } from 'react';
 import * as Yup from 'yup';
-import logo from '../../resources/dccs.png';
-import  "./Register.css";
 import { Link } from 'react-router-dom';
 
 
 
 const RegisterEmployeeForm:React.FC<any>=()=>{
- 
 const {setEmailList}=useContext(EmployeeContext);
 const {addNewEmployee}=useContext(EmployeeContext);
 const {employees}=useContext(EmployeeContext);
@@ -43,13 +40,10 @@ const validate= Yup.object({
 };
 
  return (
-   <div className="ms-Grid container" dir="ltr" style={{padding:"0px"}}>
+   <div className="ms-Grid wraper" dir="ltr" style={{padding:"0px"}}>
       <div className="ms-Grid-row">
-       <div id="wraper" className="ms-Grid-col ms-lg8 ms-lgPush2" style={{ boxShadow: GetTheme.effects.elevation64 }}>
-        <div className="ms-Grid-col ms-lg7 div-img">
-         <div className="ms-Grid-col ms-lg6 ms-lgPush3"><img src={logo} alt=""/></div>
-        </div>
-        <div className="ms-Grid-col ms-lg5 div-form">
+       <div className="ms-Grid-col ms-xl6 ms-lg8 ms-md10 ms-sm10 ms-xlPush3 ms-lgPush2 ms-smPush1 ms-mdPush1 container" style={{ boxShadow: GetTheme.effects.elevation64 }}>
+        <div className="ms-Grid-col ms-xl8 ms-lg12 ms-md12 ms-sm12 ms-xlPush2 div-form">
          <Formik initialValues={initialValues} onSubmit={(values,{resetForm})=>{
           const newUser:Employee={
           _id: new Date().getDate().toString(),
@@ -70,8 +64,8 @@ const validate= Yup.object({
          }} validationSchema={validate}>
           {
            formik=>(
-             <div className="ms-Grid-col ms-lg8 ms-lgPush2 form">
-              <div className="ms-Grid-col ms-lg12" style={{textAlign:"center"}}>
+             <div className="ms-Grid-col ms-lg12 ms-md12 ms-sm12">
+              <div className="ms-Grid-col ms-lg12 ms-md12 ms-sm12" style={{textAlign:"center"}}>
                 <h1 >
                   Create Account
                 </h1>
@@ -84,8 +78,8 @@ const validate= Yup.object({
               <CustomTextField  label="Confirm Password" name="confirmPassword"  type="password"/>
                
             
-                <div className="ms-Grid-row">
-              <div className="ms-Grid-col ms-xl8 ms-lgPush2" style={{textAlign:"center"}}>
+              <div className="ms-Grid-row">
+              <div className="ms-Grid-col ms-lg8 ms-md12 ms-sm12 ms-lgPush2 signup-button" style={{textAlign:"center"}}>
                 <PrimaryButton
                   type="submit"
                   className="prim-btn ms-fontSize-20"
@@ -95,8 +89,8 @@ const validate= Yup.object({
             </div>
 
             <div className="ms-Grid-row">
-              <div className="ms-Grid-col ms-xl12">
-                <p className="ms-fontSize-18 ms-fontWeight-semibold" style={{textAlign:"center"}}>
+              <div className="ms-Grid-col ms-lg12 ms-sm12">
+                <p className="ms-fontSize-18 ms-fontWeight-semibold" style={{textAlign:"center" , margin:'30px 0px'}}>
                   Already have an account?{" "}<Link to="/">Log In</Link>
                   
                 </p>

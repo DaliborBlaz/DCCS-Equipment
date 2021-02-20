@@ -19,9 +19,10 @@ export const CustomRouter:React.FC<any>=()=>{
  
  // return <div>hello world</div>
   return<Router>
+    <Header/>
     <EmployeeContextProvider>
     <EquipmentProvider>
-    <Header/>
+    
    <Switch>
       <Route exact path="/" component={Login}/>
       <Route exact path="/admin/:id" component={Admin}/>

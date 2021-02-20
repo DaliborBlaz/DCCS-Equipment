@@ -10,7 +10,10 @@ export const Items:React.FC<ItemsProps>=({item})=>{
   return <div>
    {
     item.map((single:EquipmentItem)=>{
-     return <p key={single._id}>{single._type}{" / "}{single._manufacturer}{" / "}{single._serialNumber}</p>
+     return<div key={single._id} className="ms-Grid-col ms-xl12 ms-lg12 ms-md12 ms-sm12" style={{borderBottom:"1px solid black", marginBottom:"30px"}}> 
+     <h3>{single._type}</h3>
+     <h5>{single._manufacturer}{" / "}{single._serialNumber}</h5>
+     </div>
     })
    }
  </div>
