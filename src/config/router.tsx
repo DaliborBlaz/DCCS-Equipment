@@ -1,43 +1,119 @@
-import React from 'react';
-import { BrowserRouter as Router,Route, Switch } from 'react-router-dom';
-import { EmployeeContextProvider } from '../AppContext/employeeContext';
-import { EquipmentProvider } from '../AppContext/equipmentContext';
-import { AddEquipmentItem } from '../components/AddEquipment/addEquipment';
-import { Admin } from '../components/Admin/admin';
-import { AssignRemove } from '../components/AssignRemoveEquipment/assignRemove';
-import { Employee } from '../components/Employee/employee';
-import { FilterByEmployee } from '../components/FilterEquipmentByEmployee/filterByEmployee';
-import { FilterByType } from '../components/FilterEquipmentType/filterEquipmentType';
-import { Header } from '../components/Header/header';
-import Login from '../components/Login/login'
-import { ModalAdd } from '../components/Modals/modalAdd';
-import RegisterEmployeeForm from '../components/Register/registerEmployee'
+import React, { useContext, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
+import { EmployeeContext } from "../AppContext/employeeContext";
+import RoutesConstants from "./routesConstants";
+import { Error404 } from "../components/Error/404";
+import { Error403 } from "../components/Error/403";
 
+import { Header } from "../components/Header/header";
+import { Error401 } from "../components/Error/401";
 
-export const CustomRouter:React.FC<any>=()=>{
+const ReactRouterSetup: React.FC<any> = () => {
+  const { setUser, currentUser } = useContext(EmployeeContext);
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user && setUser) {
+      setUser(JSON.parse(user));
+    }
+  }, []);
 
- 
- // return <div>hello world</div>
-  return<Router>
-    <Header/>
-    <EmployeeContextProvider>
-    <EquipmentProvider>
-    
-   <Switch>
-      <Route exact path="/" component={Login}/>
-      <Route exact path="/admin/:id" component={Admin}/>
-      <Route exact path="/register" component={RegisterEmployeeForm}/>
-      <Route exact path='/employee/:id' component={Employee}/>
-      <Route exact path='/add' component={AddEquipmentItem}/>
-      <Route exact path='/filter-type' component={FilterByType}/>
-      <Route exact path='/assign-remove' component={AssignRemove}/>
-      <Route exact path='/modal-add' component={ModalAdd}/>
-      <Route exact path='/filter-employee' component={FilterByEmployee}/>
+  const { employees } = useContext(EmployeeContext);
+  const isAuthenticated = () => {
+    if (currentUser) {
+      
+      const foundIndex = (employees || []).findIndex(
+        (user: Employee) => user._id === currentUser._id
+      );
+      if (foundIndex > -1) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  };
 
+  const routDirector = (role: string) => {
+    if (role === "admin") {
+      return RoutesConstants.authorized.admin.path;
+    } else {
+      return RoutesConstants.authorized.employee.path;
+    }
+  };
 
-   </Switch>
-   </EquipmentProvider>
-   </EmployeeContextProvider>
-  </Router>
+  const renderAuthorizedRoutes = (routes: any) => {
+    if (!isAuthenticated()) {
+      return <Error401 />;
+    }
 
-}
+    return Object.keys(routes).map((key) => {
+      const route = routes[key];
+
+      const hasPermission =
+        (route.visibleFor || []).findIndex(
+          (role: string) => currentUser && currentUser._role === role
+        ) > -1;
+
+      if (!hasPermission) {
+       
+        return (
+          <Route key={route.path} path={route.path}>
+            <Error403 />
+          </Route>
+        );
+      } else {
+        return (
+          <Route key={route.path} path={route.path}>
+            <Header />
+            <route.component></route.component>
+          </Route>
+        );
+      }
+    });
+  };
+
+  const renderUnauthorizedRoutes = (routes: any) => {
+    return Object.keys(routes).map((key) => {
+      let redirectComponent: any = "";
+      if (isAuthenticated()) {
+        
+        redirectComponent =
+          currentUser && currentUser._role === "admin" ? (
+            <Redirect to={RoutesConstants.authorized.admin.path} />
+          ) : (
+            <Redirect to={RoutesConstants.authorized.employee.path} />
+          );
+        redirectComponent = (
+          <Redirect to={routDirector(currentUser?._role || "")} />
+        );
+      }
+      const route = routes[key];
+      return (
+        <Route exact key={route.path} path={route.path}>
+          {redirectComponent}
+          <Header />
+          <route.component></route.component>
+        </Route>
+      );
+    });
+  };
+  return (
+    <Router>
+      <Switch>
+        {renderUnauthorizedRoutes(RoutesConstants.unAuthorized)}
+        {renderAuthorizedRoutes(RoutesConstants.authorized)}
+        <Route exact path="*">
+          <Error404 />
+        </Route>
+      </Switch>
+    </Router>
+  );
+};
+
+export default ReactRouterSetup;

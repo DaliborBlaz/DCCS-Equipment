@@ -1,38 +1,45 @@
-import { Icon } from '@fluentui/react';
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
-import logo from '../../resources/dccs.png'
+import { Icon } from "@fluentui/react";
+import React, { useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router";
+import { EmployeeContext } from "../../AppContext/employeeContext";
+import logo from "../../resources/dccs.png";
 
 export const Header: React.FC<any> = () => {
-  const [user, setUser] = useState<Employee | null>();
   const Custom = () => <Icon iconName="SignOut" />;
+  const { currentUser, employees, setUser } = useContext(EmployeeContext);
 
-
-  const history = useHistory()
+  const history = useHistory();
 
   const handleClick = () => {
     history.push("/");
     localStorage.clear();
-    setUser(null)
-  }
+    if (setUser) setUser(undefined);
+  };
   const imgClick = () => {
-    setUser(JSON.parse(localStorage.getItem("user")!));
-    if (user) {
-      history.push(`/${user._role}/${user._id}`);
+    if (currentUser) {
+      history.push(`/${currentUser._role}`);
     }
-  }
+  };
 
-  return <div className="logo-wraper ms-Grid" dir="ltr">
-    <div className="ms-Grid-row">
-      <div className="ms-Grid-col ms-xl12 ms-lg12 ms-md12 ms-sm12" style={{ textAlign: "center" }} >
-        <div className="ms-Grid-col ms-xl12 ms-lg12 ms-md12 ms-sm12" style={{ textAlign: "center" }}>
-          <img src={logo} alt="" onClick={imgClick} style={{ display: "inline-block" }} />
-          <p onClick={handleClick} className="p-tag">Sign out
-            <Custom />
-          </p>
+  return (
+    <div className="logo-wraper ms-Grid" dir="ltr">
+      <div className="ms-Grid-row">
+        <div className="ms-Grid-col ms-xl12 ms-lg12 ms-md12 ms-sm12">
+          <div className="ms-Grid-col ms-xl12 ms-lg12 ms-md12 ms-sm12 logo-left">
+            <img
+              src={logo}
+              alt=""
+              onClick={imgClick}
+              style={{ display: "inline-block" }}
+            />
+            {currentUser && (
+              <p onClick={handleClick} className="p-tag">
+                <Custom />
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-}
+  );
+};

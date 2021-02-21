@@ -8,6 +8,7 @@ body {
   background-color: white;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  height: 100%;
 }
 
 code {
@@ -16,7 +17,7 @@ code {
 }
 /*Global*/
 .wraper {
-  margin: 100px;
+  margin-top: 100px;
 }
 
 .container {
@@ -30,16 +31,21 @@ code {
 .logo-wraper {
   background-color: #f69325;
 }
-.p-tag{
-  display: inline-block;
-  vertical-align: top;
- float: right;
- cursor: pointer;
+.p-tag {
+  transform: translateY(-50%);
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  cursor: pointer;
 }
 .logo-wraper img {
   height: 60px;
   cursor: pointer;
-  margin-left: 100px;
+}
+.logo-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .logo-wraper i {
   cursor: pointer;
@@ -47,11 +53,11 @@ code {
   font-weight: bolder;
   color: black;
   vertical-align: middle;
-  margin-left:1%
+  margin-left: 1%;
 }
-.logo-wraper p{
-  margin:0;
-  padding:0;
+.logo-wraper p {
+  margin: 0;
+  padding: 0;
 }
 
 /*Login Component*/
@@ -82,46 +88,45 @@ code {
   margin-right: 2%;
 }
 
-
 /*Add Equipment Component*/
 
-.add-equipment-container h4{
-margin: 0;
-text-align: left;
+.add-equipment-container h4 {
+  margin: 0;
+  text-align: left;
 }
-.employee-equipment-container h4{
-margin: 0;
-text-align: left;
-}
-
-.add-equipment-container-item{
-  margin:5% 0;
+.employee-equipment-container h4 {
+  margin: 0;
+  text-align: left;
 }
 
-.add-equipment-container-item select, input{
+.add-equipment-container-item {
+  margin: 5% 0;
+}
+
+.add-equipment-container-item select,
+input {
   height: 30px;
 }
-.add-equipment-container-button button{
-  margin:10% 0;
+.add-equipment-container-button button {
+  margin: 10% 0;
   width: 85%;
   height: 40px;
-  background-color: #F69325;
+  background-color: #f69325;
   font-size: 2vh;
   font-weight: bolder;
-  font-family: 'Walter Turncoat';
-  border: 3px solid black
+  font-family: "Walter Turncoat";
+  border: 3px solid black;
 }
 
-.add-equipment-container-button button:hover{
-  
+.add-equipment-container-button button:hover {
   background-color: #8d4e05;
   border: 2px solid white;
-  color:white
+  color: white;
 }
 
 /*Table*/
 table {
-  font-family: 'Walter Turncoat';
+  font-family: "Walter Turncoat";
   border-collapse: collapse;
   width: 100%;
 }
@@ -131,27 +136,24 @@ th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 0;
-  
 }
 
 tbody tr:nth-child(odd) {
   background-color: rgb(184, 180, 180);
- 
 }
-td button{
- width: 90%;
+td button {
+  width: 90%;
 
-  background-color: #F69325;
+  background-color: #f69325;
   font-size: 1.2vh;
-  font-family: 'Walter Turncoat';
+  font-family: "Walter Turncoat";
   border: 1px solid black;
   font-weight: bold;
 }
-td button:hover{
+td button:hover {
   background-color: #8d4e05;
- 
-  color:white
-  
+
+  color: white;
 }
 
 /*Modal*/
@@ -187,40 +189,96 @@ td button:hover{
 .modal__title {
   font-size: 30px;
 }
-.modal-button{
+.modal-button {
   width: 50%;
   margin: 0 auto;
   height: 30px;
-  background-color:rgb(79, 219, 79);
+  background-color: rgb(79, 219, 79);
   font-size: 1.2vh;
-  font-family: 'Walter Turncoat';
+  font-family: "Walter Turncoat";
   border: 1px solid black;
   font-weight: bold;
   color: white;
 }
-.modal-button:hover{
-  background-color:rgb(23, 160, 23);
-  color: black
+.modal-button:hover {
+  background-color: rgb(23, 160, 23);
+  color: black;
 }
-.button-remove, .button-close{
+.button-remove,
+.button-close {
   width: 45%;
   height: 30px;
   font-size: 1.2vh;
-  font-family: 'Walter Turncoat';
+  font-family: "Walter Turncoat";
   border: 1px solid black;
   font-weight: bold;
 }
-.button-remove{
+.button-remove {
   margin-right: 0;
-  background-color:rgb(182, 29, 9);
+  background-color: rgb(182, 29, 9);
   color: white;
   margin-left: 5px;
 }
-.button-remove:hover{
-  background-color:rgb(146, 23, 7);
+.button-remove:hover {
+  background-color: rgb(146, 23, 7);
   color: black;
 }
-.button-close:hover{
- background-color:rgb(133, 131, 131);
+.button-close:hover {
+  background-color: rgb(133, 131, 131);
   color: white;
+}
+
+/*Alert modal*/
+.dialog {
+  position: fixed;
+  top: 70px;
+  left: 25%;
+  width: 50%;
+  margin: 0 auto;
+  height: 50px;
+  z-index: 10;
+}
+.alert {
+  margin-bottom: 1rem;
+  height: 2rem;
+  display: grid;
+  align-items: center;
+  text-align: center;
+  font-size: 0.7rem;
+  border-radius: 0.25rem;
+  letter-spacing: var(--spacing);
+  text-transform: capitalize;
+}
+.alert-danger {
+  color: #721c24;
+  background: #f8d7da;
+}
+.alert-success {
+  color: #155724;
+  background: #d4edda;
+}
+
+@media only screen and (max-width: 460px) {
+  .p-tag {
+    right: 5px;
+    font-size: 12px;
+  }
+  .p-tag i {
+    font-size: 20px;
+  }
+  .logo-left {
+    justify-content: flex-start;
+  }
+  .logo-wraper img {
+    height: 40px;
+  }
+}
+
+@media only screen and (max-width: 639px) {
+  .wraper {
+    margin-top: 0;
+  }
+  .container {
+    box-shadow: none !important ;
+  }
 }

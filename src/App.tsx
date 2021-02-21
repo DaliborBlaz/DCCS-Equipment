@@ -1,20 +1,21 @@
-import React from 'react';
-import Login from './components/Login/login'
+import React from "react";
 import { initializeIcons } from "@uifabric/icons";
-import RegisterEmployeeForm from './components/Register/registerEmployee';
-import { EmployeeContextProvider } from './AppContext/employeeContext';
-import { CustomRouter } from './config/router';
+import {
+  EmployeeContext,
+  EmployeeContextProvider,
+} from "./AppContext/employeeContext";
+import ReactRouterSetup from "./config/router";
+import { EquipmentProvider } from "./AppContext/equipmentContext";
 
 function App() {
   initializeIcons();
 
   return (
-     <CustomRouter>
-   
-        {/* <RegisterEmployeeForm/>
-        <Login/> */}
-    </CustomRouter>
-    
+    <EmployeeContextProvider>
+      <EquipmentProvider>
+        <ReactRouterSetup></ReactRouterSetup>
+      </EquipmentProvider>
+    </EmployeeContextProvider>
   );
 }
 
